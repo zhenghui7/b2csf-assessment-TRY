@@ -3,6 +3,8 @@ import { BundleId, DateTitleId, RetrievedData, UploadData } from "./models";
 import { Observable, lastValueFrom, map } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
+const URL = 'https://b2-csf-assessment-try-production.up.railway.app'
+
 @Injectable()
 export class UploadService {
 
@@ -17,25 +19,26 @@ export class UploadService {
 
     formData.set('zipFile', f)
 
-    return lastValueFrom(this.http.post<BundleId>('http://localhost:8080/upload', formData))
+    return lastValueFrom(this.http.post<BundleId>(`${URL}/upload`, formData))
   }
 
   retrieve(bundleId: String): Observable<RetrievedData> {
 
-    return this.http.get<RetrievedData>(`http://localhost:8080/bundle/${bundleId}`)
+    return this.http.get<RetrievedData>(`${URL}/bundle/${bundleId}`)
   }
 
   retrieveAll(): Observable<DateTitleId[]> {
-    // return this.http.get<DateTitleId[]>('http://localhost:8080/bundles')
+    return this.http.get<DateTitleId[]>(`${URL}/bundles`)
     
-    return this.http.get<string[]>('http://localhost:8080/bundles').pipe(
-      map((response: string[]) => {
-        // Remove backslashes from each string in the response array
-        const sanitizedResponse = response.map((item) => item.replace(/\\/g, ''));
-        // Parse the sanitized JSON strings into DateTitleId objects
-        return sanitizedResponse.map((item) => JSON.parse(item) as DateTitleId);
-      })
-    );
+    // above works again after restarting com
+    // return this.http.get<string[]>('http://localhost:8080/bundles').pipe(
+    //   map((response: string[]) => {
+    //     // Remove backslashes from each string in the response array
+    //     const sanitizedResponse = response.map((item) => item.replace(/\\/g, ''));
+    //     // Parse the sanitized JSON strings into DateTitleId objects
+    //     return sanitizedResponse.map((item) => JSON.parse(item) as DateTitleId);
+    //   })
+    // );
   }
  
 

@@ -1,24 +1,19 @@
 <p>below from view 0</p>
 
+<button type="button" [routerLink]="['/view1']">Upload</button>
+
 <div class="border" *ngIf="allBundles$ | async as bundles; else empty">
   <h2>Photo Storage</h2>
   <table>
-    <tr>
-        <td>
-            <button type="button" [routerLink]="['/view1']">Upload</button>
-        </td>
-        <td></td>
-    </tr>
-    <br>
+    <br />
     <tr *ngFor="let b of bundles">
-        <td> 
-          <a [routerLink]="['/view2', b.bundleId]"> {{ b.title }} </a>
-        </td>
-        <td>  
-          <a [routerLink]="['/view2', b.bundleId]"> {{ b.date }} </a>
-        </td>
+      <td>
+        <a [routerLink]="['/view2', b.bundleId]"> {{ b.title }} </a>
+      </td>
+      <td>
+        <a [routerLink]="['/view2', b.bundleId]"> {{ b.date }} </a>
+      </td>
     </tr>
-    
   </table>
 </div>
 
