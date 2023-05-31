@@ -1,0 +1,22 @@
+<p>below from view 2</p>
+
+<div class="border" *ngIf="bundle$ | async as b else error">
+    <h3>{{ b.title }}</h3>
+    <div>
+        by {{ b.name }} on {{b.date}}
+    </div>
+    <br>
+    <div>
+        {{b.comments}}
+    </div>
+    <div *ngFor="let u of urls">
+        <img src="{{ u }}" width="450vw">
+    </div>
+    <br>
+    <button type="button" [routerLink]="['/view1']" style="font-size: 20px; width: 200px">Back</button>
+
+</div>
+
+<ng-template #error>
+    <h3>Error. Please try again</h3>
+</ng-template>

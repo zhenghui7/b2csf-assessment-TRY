@@ -1,0 +1,41 @@
+<p>below from view 1</p>
+
+<div class="border">
+    <form [formGroup]="form" (submit)="upload()">
+        <table>
+            <tr>
+                <td>Name: </td>
+                <td>
+                    <input type="text" size="30" placeholder="Name" formControlName="name">
+                </td>
+            </tr>
+            <tr>
+                <td>Title: </td>
+                <td>
+                    <input type="text" size="30" placeholder="Title" formControlName="title">
+                </td>
+            </tr>
+            <tr>
+                <td>Comments: </td>
+                <td>
+                    <textarea cols="30" rows="4" placeholder="Your comments in here" formControlName="comment"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Archive: </td>
+                <td>
+                    <input type="file" formControlName="file" #uploadFile>
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="button" style="width: 100px;" [routerLink]="['/']">Cancel</button>
+                    &nbsp;
+                    <button type="submit" style="width: 100px;" [disabled]="form.invalid">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

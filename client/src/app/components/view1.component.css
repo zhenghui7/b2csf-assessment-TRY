@@ -1,0 +1,7 @@
+.border {
+    width: fit-content;
+    height: auto;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 5px;
+  }
